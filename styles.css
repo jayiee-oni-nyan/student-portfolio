@@ -48,7 +48,7 @@ header {
 }
 
 .header-container {
-  max-width: 1100px;
+  max-width: 1350px;
   margin: 0 auto;
   padding: 1rem 2rem;
   display: flex;
@@ -73,7 +73,7 @@ header {
 .nav-links a {
   color: #EBF1F6;
   text-decoration: none;
-  font-weight: 500;
+  font-weight: 700;
   position: relative;
   padding-bottom: 4px;
   transition: color 0.3s ease;
@@ -100,7 +100,7 @@ header {
 
 main {
   width: 100%;
-  max-width: 1000px;
+  max-width: 1300px;
   margin: 0 auto;
   padding: 0 16px;
 }
@@ -122,7 +122,11 @@ h2 {
   font-size: 2rem;
   margin-bottom: 24px;
   padding-bottom: 4px;
-  border-bottom: 2px solid #A91D22;
+  border-bottom: 2px solid #E04A50;
+}
+
+strong {
+  color: #EBF1F6;
 }
 
 .I-section {
@@ -144,8 +148,9 @@ h2 {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  background-color: transparent;
-  border: 1px solid rgba(224, 74, 80, 0.4);
+  background-color: rgba(19, 2, 2, 0.7);
+  box-shadow: 0 0 20px rgba(224, 74, 80, 0.5);
+  border: 1px solid #E04A50;
   color: #EBF1F6;
   padding: 6px 20px;
   border-radius: 50px;
@@ -181,10 +186,10 @@ h2 {
 }
 
 .about-content {
-  display: flex;
-  flex-direction: row-reverse;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
   align-items: center;
-  gap: 30px;
+  gap: 0;
   flex-wrap: wrap;
 }
 
@@ -203,21 +208,24 @@ h2 {
   text-align: justify;
 }
 
-.about-text strong {
-  color: #EBF1F6;
-}
-
 .portfolio-photo {
   width: 100%;
   max-width: 350px;
   height: auto;
   border-radius: 16px;
   border: 2px solid #A91D22;
+  box-shadow: 0 0 20px rgba(224, 74, 80, 0.7);
   object-fit: cover;
   margin: 0 auto;
 }
 
-.skills-grid,
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  width: 100%;
+  margin-top: 12px;
+}
 .projects-grid,
 .cert-grid,
 .contact-grid {
@@ -228,7 +236,21 @@ h2 {
   margin-top: 12px;
 }
 
-.skill-card,
+.skill-card {
+  background-color: rgba(18, 18, 18, 0.7);
+  border: 1px solid rgba(224, 74, 80, 0.4);
+  border-radius: 12px;
+  padding: 10px 20px 25px;
+  aspect-ratio: 1 / 1;
+  min-height: unset;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  text-align: center;
+  gap: 8px;
+  transition: border-color 0.2s ease, transform 0.4s ease;
+}
 .project-card,
 .cert-card,
 .contact-card {
@@ -241,7 +263,7 @@ h2 {
   align-items: center;
   text-align: center;
   gap: 16px;
-  transition: border-color 0.2s ease, transform 0.6s ease;
+  transition: border-color 0.2s ease, transform 0.4s ease;
 }
 
 .contact-card {
@@ -254,7 +276,7 @@ h2 {
 .cert-card:hover,
 .contact-card:hover {
   border-color: #A91D22;
-  background-color: rgba(169, 29, 34, 0.1);
+  background-color: rgba(19, 2, 2, 0.7);
   box-shadow: 0 0 20px rgba(224, 74, 80, 0.5), inset 0 0 10px rgba(224, 74, 80, 0.3);
   transform: translateY(-8px);
 }
@@ -268,7 +290,12 @@ h2 {
   text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
 }
 
-.skill-icon,
+.skill-icon {
+  font-size: 3.2rem;
+  font-weight: bold;
+  color: #A91D22;
+  transition: transform 0.6s ease, filter 0.6s ease;
+}
 .project-icon,
 .contact-icon {
   font-size: 2.6rem;
@@ -285,7 +312,11 @@ h2 {
   transform: scale(1.25);
 }
 
-.skill-card span,
+.skill-card span {
+  color: #EBF1F6;
+  font-weight: bold;
+  font-size: 1.1rem;
+}
 .project-title {
   color: #EBF1F6;
   font-weight: bold;
@@ -373,14 +404,36 @@ h2 {
   border: 1px solid rgba(224, 74, 80, 0.2);
 }
 
-.cert-card h3,
-.contact-card h3 {
+.cert-card h3 {
+  text-align: left;
+  align-self: flex-start;
+  position:relative;
+  padding-left: 18px;
   margin: 0;
   font-size: 1.1rem;
   color: #EBF1F6;
 }
 
+.cert-card h3::before {
+  content: ">";
+  color: #A91D22;
+  font-family: monospace;
+  font-weight: bold;
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.cert-card:hover h3::before {
+  color: #E04A50;
+  transform: translateY(-50%) scale(1.25); 
+}
+
 .cert-card p {
+  text-align: left;
+  align-self: flex-start;
   color: rgba(235, 241, 246, 0.7);
   font-size: 0.9rem;
 }
@@ -404,6 +457,12 @@ h2 {
   font-weight: 700;
   color: #EBF1F6;
   border-bottom: none;
+}
+
+.contact-card h3 {
+  margin: 0;
+  font-size: 1.1rem;
+  color: #EBF1F6;
 }
 
 .contact-card p {
