@@ -1,0 +1,236 @@
+/* =========================================================
+   SOLO LEVELING SYSTEM WINDOW UI COMPONENT
+========================================================= */
+.sl-window {
+  position: relative;
+  background-color: rgba(18, 18, 18, 0.78);
+  background-image:
+    linear-gradient(rgba(224, 74, 80, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(224, 74, 80, 0.05) 1px, transparent 1px),
+    radial-gradient(circle at 50% 0%, rgba(224, 74, 80, 0.14), transparent 70%);
+  background-size: 24px 24px, 24px 24px, 100% 100%;
+  border: 1px solid rgba(224, 74, 80, 0.55);
+  border-radius: 2px;
+  box-shadow:
+    0 0 18px rgba(169, 29, 34, 0.25),
+    inset 0 0 0 4px rgba(18, 18, 18, 0.65),
+    inset 0 0 0 5px rgba(224, 74, 80, 0.28);
+  /* Smooth transition for transform scale and glow */
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.35s cubic-bezier(0.25, 1, 0.5, 1), background-color 0.3s ease;
+}
+
+/* Glowing Solo Leveling HUD Corner Brackets */
+.sl-window::before,
+.sl-window::after {
+  content: "";
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  pointer-events: none;
+  z-index: 2;
+  transition: all 0.35s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.sl-window::before {
+  top: -2px;
+  left: -2px;
+  border-top: 2px solid #E04A50;
+  border-left: 2px solid #E04A50;
+}
+
+.sl-window::after {
+  bottom: -2px;
+  right: -2px;
+  border-bottom: 2px solid #E04A50;
+  border-right: 2px solid #E04A50;
+}
+
+.sl-window:hover::before {
+  top: -6px;
+  left: -6px;
+  width: 32px;
+  height: 32px;
+}
+
+.sl-window:hover::after {
+  bottom: -6px;
+  right: -6px;
+  width: 32px;
+  height: 32px;
+}
+
+.sl-window:hover {
+  border-color: #E04A50;
+  background-color: rgba(19, 2, 2, 0.85);
+  box-shadow:
+    0 0 25px rgba(224, 74, 80, 0.55),
+    inset 0 0 0 4px rgba(19, 2, 2, 0.7),
+    inset 0 0 0 5px rgba(224, 74, 80, 0.6),
+    inset 0 0 16px rgba(224, 74, 80, 0.25);
+  transform: scale(1.02); 
+}
+
+.sl-header-box {
+  display: inline-block;
+  padding: 5px 18px;
+  border: 1px solid rgba(224, 74, 80, 0.75);
+  background-color: rgba(19, 2, 2, 0.85);
+  box-shadow: 0 0 12px rgba(224, 74, 80, 0.35), inset 0 0 8px rgba(224, 74, 80, 0.2);
+  color: #EBF1F6;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  text-shadow: 0 0 8px rgba(235, 241, 246, 0.6);
+}
+
+.sl-btn {
+  color: #EBF1F6;
+  font-weight: 500;
+  text-decoration: none;
+  font-size: 0.88rem;
+  letter-spacing: 0.5px;
+  display: inline-block;
+  padding: 7px 16px;
+  align-self: flex-start;
+  border: 1px solid rgba(224, 74, 80, 0.75);
+  border-radius: 24px;
+  background-color: rgba(169, 29, 34, 0.35);
+  box-shadow: inset 0 0 8px rgba(224, 74, 80, 0.25);
+  transition: all 0.2s ease-in-out;
+  margin-top: auto;
+}
+
+.sl-btn:hover {
+  color: #EBF1F6;
+  background-color: rgba(224, 74, 80, 0.45);
+  border-color: #E04A50;
+  box-shadow: 0 0 18px rgba(224, 74, 80, 0.6), inset 0 0 10px rgba(224, 74, 80, 0.7);
+  text-shadow: 0 0 8px rgba(255, 255, 255, 0.75);
+}
+
+.sl-btn-secondary {
+  background-color: rgba(18, 18, 18, 0.8);
+  border-color: rgba(224, 74, 80, 0.4);
+}
+
+.sl-btn-secondary:hover {
+  background-color: rgba(18, 18, 18, 0.8);
+  border-color: #E04A50;
+  box-shadow: 0 0 18px rgba(224, 74, 80, 0.6);
+}
+
+.sl-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.28s ease, visibility 0.28s ease;
+}
+
+.sl-modal:target {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.sl-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(10, 4, 4, 0.82);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  cursor: default;
+}
+
+.sl-modal-box {
+  position: relative;
+  z-index: 2001;
+  width: 100%;
+  max-width: 580px;
+  padding: 28px 26px;
+  background-color: rgba(18, 18, 18, 0.95);
+  box-shadow:
+    0 0 35px rgba(224, 74, 80, 0.6),
+    inset 0 0 0 4px rgba(18, 18, 18, 0.9),
+    inset 0 0 0 5px rgba(224, 74, 80, 0.55);
+  transform: scale(0.92);
+  transition: transform 0.28s ease;
+}
+
+.sl-modal:target .sl-modal-box {
+  transform: scale(1);
+}
+
+/* Disable card lift hover inside the open modal */
+.sl-modal-box:hover {
+  transform: scale(1);
+}
+
+.sl-modal-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  padding-bottom: 16px;
+  margin-bottom: 18px;
+  border-bottom: 1px solid rgba(224, 74, 80, 0.4);
+}
+
+.sl-modal-body {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.sl-modal-preview {
+  width: 100%;
+  max-height: 290px;
+  object-fit: contain;
+  background-color: rgba(12, 12, 12, 0.9);
+  border: 1px solid rgba(224, 74, 80, 0.45);
+  padding: 6px;
+}
+
+.sl-modal-title {
+  font-size: 1.45rem;
+  font-weight: 700;
+  color: #EBF1F6;
+  text-shadow: 0 0 10px rgba(235, 241, 246, 0.35);
+}
+
+.sl-modal-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 24px;
+  padding: 10px 14px;
+  border: 1px solid rgba(224, 74, 80, 0.35);
+  background-color: rgba(19, 2, 2, 0.65);
+  font-size: 0.85rem;
+  color: rgba(235, 241, 246, 0.85);
+}
+
+.sl-modal-desc {
+  font-size: 0.95rem;
+  color: rgba(235, 241, 246, 0.8);
+  line-height: 1.6;
+}
+
+.sl-modal-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.sl-modal-actions .sl-btn {
+  flex: 0 0 160px;
+  text-align: center;
+}
